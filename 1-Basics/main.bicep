@@ -10,3 +10,4 @@ resource mySymbolicName 'Microsoft.Storage/storageAccounts@2021-09-01' = {
     name: 'Standard_LRS'  // Standard for now
   }
 }
+
