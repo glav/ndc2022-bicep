@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "name": "GP_Gen5",
+    "tier": "GeneralPurpose",
+    "family": "Gen5",
+    "capacity": 4 
+  },
+  "uat": {
+    "name": "GP_Gen5",
+    "tier": "GeneralPurpose",
+    "family": "Gen5",
+    "capacity": 12 
+  },
+  "prod": {
+    "name": "GP_Gen5",
+    "tier": "GeneralPurpose",
+    "family": "Gen5",
+    "capacity": 24
+  }
+}

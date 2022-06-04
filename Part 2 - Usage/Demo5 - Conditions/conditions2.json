@@ -1,0 +1,59 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "metadata": {
+    "_generator": {
+      "name": "bicep",
+      "version": "0.6.18.56646",
+      "templateHash": "11619637696496792673"
+    }
+  },
+  "parameters": {
+    "environment": {
+      "type": "string",
+      "allowedValues": [
+        "dev",
+        "uat",
+        "prod"
+      ]
+    },
+    "adminUsername": {
+      "type": "string"
+    },
+    "adminPassword": {
+      "type": "secureString"
+    }
+  },
+  "variables": {
+    "$fxv#0": "{\r\n  \"dev\": {\r\n    \"name\": \"GP_Gen5\",\r\n    \"tier\": \"GeneralPurpose\",\r\n    \"family\": \"Gen5\",\r\n    \"capacity\": 4 \r\n  },\r\n  \"uat\": {\r\n    \"name\": \"GP_Gen5\",\r\n    \"tier\": \"GeneralPurpose\",\r\n    \"family\": \"Gen5\",\r\n    \"capacity\": 12 \r\n  },\r\n  \"prod\": {\r\n    \"name\": \"GP_Gen5\",\r\n    \"tier\": \"GeneralPurpose\",\r\n    \"family\": \"Gen5\",\r\n    \"capacity\": 24\r\n  }\r\n}\r\n\r\nvar databaseSkuProperties = {\r\n  stg: {\r\n    collation: sqlCollation\r\n    maxSizeBytes: 268435456000  // 250 Gb\r\n    zoneRedundant: false\r\n  }\r\n  sit: {\r\n    collation: sqlCollation\r\n    maxSizeBytes: 536870912000  // 500 Gb\r\n  }\r\n  prd: {\r\n    collation: sqlCollation\r\n    maxSizeBytes: 1073741824000  // 1Tb\r\n    zoneRedundant: true\r\n  }\r\n}\r\n\r\noutput dbSku object = databaseSku[environment]\r\noutput dbSkuProps object = databaseSkuProperties[environment]\r\n",
+    "$fxv#1": "{\r\n  \"dev\": {\r\n    \"collation\": \"Latin1_General_CI_AS\",\r\n    \"maxSizeBytes\": 268435456000,\r\n    \"zoneRedundant\": false\r\n  },\r\n  \"uat\": {\r\n    \"collation\": \"Latin1_General_CI_AS\",\r\n    \"maxSizeBytes\": 536870912000,\r\n    \"zoneRedundant\": false\r\n  },\r\n  \"prod\": {\r\n    \"collation\": \"Latin1_General_CI_AS\",\r\n    \"maxSizeBytes\": 1073741824000,\r\n    \"zoneRedundant\": true\r\n  }\r\n}\r\n",
+    "sqlDbName": "SomeSqlDb",
+    "sqlServerName": "SomeSqlServer",
+    "dbSkus": "[json(variables('$fxv#0'))]",
+    "dbSkuProperties": "[json(variables('$fxv#1'))]"
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Sql/servers",
+      "apiVersion": "2019-06-01-preview",
+      "name": "[variables('sqlServerName')]",
+      "location": "[resourceGroup().location]",
+      "properties": {
+        "minimalTlsVersion": "1.2",
+        "administratorLogin": "[parameters('adminUsername')]",
+        "administratorLoginPassword": "[parameters('adminPassword')]"
+      }
+    },
+    {
+      "type": "Microsoft.Sql/servers/databases",
+      "apiVersion": "2020-08-01-preview",
+      "name": "[format('{0}/{1}', variables('sqlServerName'), variables('sqlDbName'))]",
+      "location": "[resourceGroup().location]",
+      "sku": "[variables('dbSkus')[parameters('environment')]]",
+      "properties": "[variables('dbSkuProperties')[parameters('environment')]]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Sql/servers', variables('sqlServerName'))]"
+      ]
+    }
+  ]
+}

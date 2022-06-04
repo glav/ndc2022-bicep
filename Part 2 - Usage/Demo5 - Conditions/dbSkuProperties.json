@@ -1,0 +1,17 @@
+{
+  "dev": {
+    "collation": "Latin1_General_CI_AS",
+    "maxSizeBytes": 268435456000,
+    "zoneRedundant": false
+  },
+  "uat": {
+    "collation": "Latin1_General_CI_AS",
+    "maxSizeBytes": 536870912000,
+    "zoneRedundant": false
+  },
+  "prod": {
+    "collation": "Latin1_General_CI_AS",
+    "maxSizeBytes": 1073741824000,
+    "zoneRedundant": true
+  }
+}
