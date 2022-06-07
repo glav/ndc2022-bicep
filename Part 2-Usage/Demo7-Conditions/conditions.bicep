@@ -52,21 +52,6 @@ var databaseSkuProperties = {
   }
 }
 
-/*
-**  Another way - go serverless for non prod
-
-var databaseSku = isProd ? {
-  name: 'GP_Gen5'   // vCore
-  tier: 'GeneralPurpose'
-  family: 'Gen5'
-  capacity: 24
-} : {
-  name: 'GP_S_Gen5_2'   //  Serverless
-  tier: 'GeneralPurpose'
-  family: 'Gen5'
-}
-*/
-
 resource sqlServer 'Microsoft.Sql/servers@2019-06-01-preview' = {
   name: sqlServerName
   location: resourceGroup().location
@@ -84,3 +69,17 @@ resource sqlDatabase 'Microsoft.Sql/servers/databases@2020-08-01-preview' = {
   properties: databaseSkuProperties[environment]
 }
 
+/*
+**  Another way - go serverless for non prod
+
+var databaseSku = isProd ? {
+  name: 'GP_Gen5'   // vCore
+  tier: 'GeneralPurpose'
+  family: 'Gen5'
+  capacity: 24
+} : {
+  name: 'GP_S_Gen5_2'   //  Serverless
+  tier: 'GeneralPurpose'
+  family: 'Gen5'
+}
+*/
