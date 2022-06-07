@@ -24,5 +24,22 @@ resource mySymbolicName 'Microsoft.Storage/storageAccounts@2021-09-01' = {
   }
 }
 
+// Reference in same resource group
+resource alreadyCreatedStorage 'Microsoft.Storage/storageAccounts@2021-09-01' existing = {
+  name: 'nameofstorageacct'
+}
+
+// Reference in different resource group
+resource alreadyCreatedStorageOtherGroup 'Microsoft.Storage/storageAccounts@2021-09-01' existing = {
+  name: 'nameofstorageacct'
+  scope: resourceGroup('anotherResourceGroup')
+}
+
+// Reference in different subscription and resource group
+resource alreadyCreatedStorageOtherSub 'Microsoft.Storage/storageAccounts@2021-09-01' existing = {
+  name: 'nameofstorageacct'
+  scope: resourceGroup('subscriptionId','anotherResourceGroup')
+}
+
 output StorageAccountName string = stgAcctName
 
