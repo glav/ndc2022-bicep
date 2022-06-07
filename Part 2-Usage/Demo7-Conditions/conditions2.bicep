@@ -3,9 +3,14 @@
   'uat'
   'prod'
 ])
+@description('Deployment environment')
 param environment string 
+
+@minLength(6)
 param adminUsername string
+
 @secure()
+@minLength(8)
 param adminPassword string
 
 var sqlDbName = 'SomeSqlDb'
@@ -21,8 +26,8 @@ resource sqlServer 'Microsoft.Sql/servers@2019-06-01-preview' = {
   }
 }
 
-var dbSkus = json(loadTextContent('dbSku.json'))
-var dbSkuProperties = json(loadTextContent('dbSkuProperties.json'))
+var dbSkus = json(loadTextContent('skuSettings/dbSku.json'))
+var dbSkuProperties = json(loadTextContent('skuSettings/dbSkuProperties.json'))
 
 resource sqlDatabase 'Microsoft.Sql/servers/databases@2020-08-01-preview' = {
   name: '${sqlServer.name}/${sqlDbName}'
