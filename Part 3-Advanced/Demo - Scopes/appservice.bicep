@@ -38,3 +38,4 @@ resource myAppService 'Microsoft.Web/sites@2020-06-01' = {
 
 output appServiceName string = webSiteName
 output appServicePlanName string = appServicePlanName
+
