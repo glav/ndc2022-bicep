@@ -5,6 +5,7 @@ param someArray array = [  // Array param with default value
   'This'
   'that'
 ]
+
 var myArray = [   // array
   'one'
   'two'
