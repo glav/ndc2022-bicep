@@ -26,7 +26,7 @@ module appService 'appservice.bicep' = {
   }
 }
 
-// Module 2 - App Service
+// Module 2 - Storage
 module storage 'storage.bicep' = {
   name: 'storageDeployment'
   params: {
@@ -37,6 +37,7 @@ module storage 'storage.bicep' = {
 
 var isProd = environment == 'prod'
 
+// Module 3 - VM
 // Only deploy the VM in production environments
 module vm 'vm.bicep' = if (isProd) {
   name: 'vmDeployment'
