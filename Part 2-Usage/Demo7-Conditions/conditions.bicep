@@ -44,6 +44,7 @@ var databaseSkuProperties = {
   uat: {
     collation: sqlCollation
     maxSizeBytes: 536870912000  // 500 Gb
+    zoneRedundant: false
   }
   prod: {
     collation: sqlCollation
@@ -81,5 +82,6 @@ var databaseSku = isProd ? {
   name: 'GP_S_Gen5_2'   //  Serverless
   tier: 'GeneralPurpose'
   family: 'Gen5'
+  capacity: 8
 }
 */

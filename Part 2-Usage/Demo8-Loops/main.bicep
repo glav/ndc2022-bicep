@@ -1,6 +1,6 @@
 
 // Simple range var
-var strArray = [for i in range(0, 3): 'stuff${(i + 1)}']  // ["stuff1", "stuff2", "stuff3"]
+var strArray = [for i in range(0, 3): 'stuff${(i + 1)}']  // ["stuff0","stuff1", "stuff2", "stuff3"]
 
 /*
 ** Range to create multiple resources

@@ -22,7 +22,7 @@ var myObj = {   // object
   some:'value'
 }
 
-@secure()    // Decorator
+@secure()
 param sensistiveObject object   // secureObject in ARM
 
 @secure()   // Decorator

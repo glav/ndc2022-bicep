@@ -46,13 +46,12 @@ resource functionApp 'Microsoft.Web/sites@2021-03-01' = {
     siteConfig: {
       appSettings: [
         {
-          name: 'BlobStorage'
+          name: 'BlobStorageConnection'
           value: 'DefaultEndpointsProtocol=https;AccountName=${storageAccount.name};EndpointSuffix=${environment().suffixes.storage};AccountKey=${storageAccount.listKeys().keys[0].value}'
         }
       ]
     }
     httpsOnly: true
     serverFarmId: appService.id
-    
   }
 }
