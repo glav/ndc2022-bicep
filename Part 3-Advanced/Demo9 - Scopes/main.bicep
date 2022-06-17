@@ -9,6 +9,7 @@ resource anotherResourceGroup 'Microsoft.Resources/resourceGroups@2021-01-01' = 
   name: 'Group2'
   location: deployment().location
 }
+
 module storage 'storage.bicep' = {
   scope: someResourceGroup   // or you could do --> resourceGroup('Group1')
   name: 'uatDeploy'
