@@ -18,3 +18,4 @@ var vmSeries = isProd ? 'Standard_D4_v3' : 'Standard_B2ms'  // Use burstable VM'
 output sqlCapacityFigure int = sqlCapacityActualValue  // 214748364800
 output isProduction bool = isProd   // if 'dev' or 'uat', then false, else true
 output isItNull string = coalesceOp // '123'
+output vmSeries string = vmSeries
