@@ -26,8 +26,8 @@ resource sqlServer 'Microsoft.Sql/servers@2019-06-01-preview' = {
   }
 }
 
-var dbSkus = json(loadTextContent('skuSettings/dbSku.json'))
-var dbSkuProperties = json(loadTextContent('skuSettings/dbSkuProperties.json'))
+var dbSkus = loadJsonContent('skuSettings/dbSku.json')
+var dbSkuProperties = loadJsonContent('skuSettings/dbSkuProperties.json')
 
 resource sqlDatabase 'Microsoft.Sql/servers/databases@2020-08-01-preview' = {
   name: '${sqlServer.name}/${sqlDbName}'
