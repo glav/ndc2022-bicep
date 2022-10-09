@@ -10,6 +10,6 @@ Rename-Item ./main.json main2.json
 Az bicep decompile -f main2.json
 
 #Deploy
-$rg = "NdcDemo2"
-az group create -n $rg -l "AustraliaEast"
-az deployment group create --resource-group $rg -w --template-file main.bicep
+$rg = "NdcDemo"
+#az group create -n $rg -l "AustraliaEast"
+#az deployment group create --resource-group $rg -w --template-file main.bicep -w

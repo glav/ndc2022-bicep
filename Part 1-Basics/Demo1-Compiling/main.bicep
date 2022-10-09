@@ -2,7 +2,7 @@
    My first Bicep resource
 */
 resource mySymbolicName 'Microsoft.Storage/storageAccounts@2021-09-01' = {
-  name: 'mystorageacct'
+  name: 'mystorageacctsyd'
   location: 'AustraliaEast'
   kind: 'BlobStorage'
   sku: {
